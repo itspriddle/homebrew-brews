@@ -23,6 +23,6 @@ class Zone2sql < Formula
   private
 
   def mysql_dir
-    Dir["#{HOMEBREW_PREFIX}/Cellar/mysql/*"].max
+    Pathname.new("#{HOMEBREW_PREFIX}/opt/mysql").realpath
   end
 end
