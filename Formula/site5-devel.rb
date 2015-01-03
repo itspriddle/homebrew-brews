@@ -1,7 +1,7 @@
 require "formula"
 
 class Site5Devel < Formula
-  url "https://raw.githubusercontent.com/itspriddle/homebrew-site5/master/site5-devel.rb"
+  url "https://raw.githubusercontent.com/itspriddle/homebrew-site5/master/Formula/site5-devel.rb"
   version "HEAD"
 
   # Rails apps
