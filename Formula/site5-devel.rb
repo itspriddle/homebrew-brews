@@ -7,11 +7,13 @@ class Site5Devel < Formula
   # Rails apps
   depends_on "dwdiff"
   depends_on "imagemagick"
-  depends_on "mysql"
   depends_on "phantomjs"
-  depends_on "postgresql" if build.with? "postgresql"
   depends_on "pow"
   depends_on "redis"
+
+  # Databases (optional)
+  depends_on "mysql"      if build.with? "mysql"
+  depends_on "postgresql" if build.with? "postgresql"
 
   # Utilities
   depends_on "gist"
