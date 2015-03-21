@@ -22,12 +22,15 @@ class Site5Devel < Formula
   depends_on "gist"
   depends_on "git"
   depends_on "gnupg"
-  depends_on "macvim" => "override-system-vim"
+  # depends_on "macvim" => "override-system-vim"
+  depends_on "vim"
   depends_on "ruby-install"
   depends_on "the_silver_searcher"
   depends_on "tree"
   depends_on "vnstat"
   depends_on "wget"
+  depends_on "hub"
+  depends_on "rename"
 
   # Noop
   def install; end
