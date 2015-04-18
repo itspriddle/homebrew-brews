@@ -31,6 +31,7 @@ class Site5Devel < Formula
   depends_on "wget"
   depends_on "hub"
   depends_on "rename"
+  depends_on "speedtest_cli"
 
   # Noop
   def install; end
