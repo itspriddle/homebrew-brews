@@ -13,6 +13,7 @@ class Site5Devel < Formula
   depends_on "phantomjs"
   depends_on "pow"
   depends_on "redis"
+  depends_on "ansible"
 
   # Databases (optional)
   depends_on "mysql"      if build.with? "mysql"
