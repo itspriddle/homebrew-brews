@@ -2,9 +2,9 @@ require 'formula'
 
 class WpCli < Formula
   homepage "http://wp-cli.org/"
-  version  "0.20.4"
+  version  "0.21.1"
   url      "https://github.com/wp-cli/wp-cli/releases/download/v#{version}/wp-cli-#{version}.phar"
-  sha256   "26f968374c9abb0ae60764c737ea41966475e058b1c142a050f00d35f9c544c9"
+  sha256   "acd8a1f90610c9174158366f1c9016fe1d0f596311ca53e4d0c4d1c497c15f6a"
 
   def install
     bin.install "wp-cli-#{self.class.version}.phar" => "wp"
