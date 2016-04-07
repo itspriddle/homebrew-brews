@@ -1,7 +1,7 @@
 require "formula"
 
-class Site5Devel < Formula
-  url "https://raw.githubusercontent.com/itspriddle/homebrew-site5/master/Formula/site5-devel.rb"
+class PressedDevel < Formula
+  url "https://raw.githubusercontent.com/itspriddle/homebrew-bres/master/Formula/pressed-devel.rb"
   version "HEAD"
 
   option "with-mysql",      "Install MySQL server"
