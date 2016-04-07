@@ -10,7 +10,7 @@ class Site5Devel < Formula
   # Rails apps
   depends_on "dwdiff"
   depends_on "imagemagick"
-  depends_on "phantomjs"
+  depends_on "itspriddle/brews/legacy-phantomjs"
   depends_on "pow"
   depends_on "redis"
   depends_on "ansible"
