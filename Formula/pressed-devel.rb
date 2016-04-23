@@ -5,13 +5,18 @@ class PressedDevel < Formula
   option "with-mysql",      "Install MySQL server"
   option "with-postgresql", "Install PostgreSQL server"
 
-  # Rails apps
+  # Ruby/Rails apps
+  depends_on "ruby-install"
   depends_on "dwdiff"
   depends_on "imagemagick"
   depends_on "itspriddle/brews/legacy-phantomjs"
   depends_on "pow"
   depends_on "redis"
   depends_on "ansible"
+
+  # PHP
+  depends_on "itspriddle/brews/composer"
+  depends_on "itspriddle/brews/wp-cli"
 
   # Databases (optional)
   depends_on "mysql"      if build.with? "mysql"
@@ -23,7 +28,6 @@ class PressedDevel < Formula
   depends_on "gnupg"
   # depends_on "macvim" => "override-system-vim"
   depends_on "vim"
-  depends_on "ruby-install"
   depends_on "the_silver_searcher"
   depends_on "tree"
   depends_on "vnstat"
@@ -31,6 +35,10 @@ class PressedDevel < Formula
   depends_on "hub"
   depends_on "rename"
   depends_on "speedtest_cli"
+  depends_on "jq"
+  depends_on "keybase"
+  depends_on "shellcheck"
+  depends_on "zsh"
 
   # Noop
   def install; end
