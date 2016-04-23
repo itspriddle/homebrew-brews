@@ -1,5 +1,3 @@
-require "formula"
-
 class WpCli < Formula
   homepage "http://wp-cli.org/"
   version  "0.23.0"

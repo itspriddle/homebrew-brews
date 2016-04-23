@@ -1,5 +1,3 @@
-require "formula"
-
 class PressedDevel < Formula
   url "https://raw.githubusercontent.com/itspriddle/homebrew-bres/master/Formula/pressed-devel.rb"
   version "HEAD"
