@@ -19,8 +19,8 @@ class PressedDevel < Formula
   depends_on "itspriddle/brews/wp-cli"
 
   # Databases (optional)
-  depends_on "mysql"      if build.with? "mysql"
-  depends_on "postgresql" if build.with? "postgresql"
+  depends_on "mysql"                          if build.with? "mysql"
+  depends_on "homebrew/versions/postgresql94" if build.with? "postgresql"
 
   # Utilities
   depends_on "gist"
@@ -41,5 +41,8 @@ class PressedDevel < Formula
   depends_on "zsh"
 
   # Noop
-  def install; end
+  def install
+    system "initdb #{var}/postgres -E utf8"
+    system "createdb #{ENV["USER"]}"
+  end
 end
