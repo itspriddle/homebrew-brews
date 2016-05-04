@@ -1,5 +1,5 @@
 class PressedDevel < Formula
-  url "https://raw.githubusercontent.com/itspriddle/homebrew-bres/master/Formula/pressed-devel.rb"
+  url "https://raw.githubusercontent.com/itspriddle/homebrew-brews/master/Formula/pressed-devel.rb"
   version "HEAD"
 
   option "with-mysql",      "Install MySQL server"
@@ -42,7 +42,13 @@ class PressedDevel < Formula
 
   # Noop
   def install
-    system "initdb #{var}/postgres -E utf8"
-    system "createdb #{ENV["USER"]}"
+    # Work around "Error: Empty installation"
+    (buildpath/"INSTALLED").write ""
+    prefix.install "INSTALLED"
+
+    if build.with? "postgresql"
+      system "initdb #{var}/postgres -E utf8"
+      system "createdb #{ENV["USER"]}"
+    end
   end
 end
