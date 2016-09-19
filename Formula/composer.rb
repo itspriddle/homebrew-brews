@@ -1,8 +1,8 @@
 class Composer < Formula
-  homepage "https://getcomposer.org/"
-  version  "1.0.2"
+  homepage "https://getcomposer.org/download"
+  version  "1.2.1"
   url      "https://getcomposer.org/download/#{version}/composer.phar"
-  sha256   "264673ccee900b22192605b8c74ecb77c45a5197347edacd142699866c478f4c"
+  sha256   "c2e04040b807a8530e5c83de56bdaaf63a0f183f8fd449bbe6e41f660e647427"
   head     "https://getcomposer.org/composer.phar"
 
   def install
