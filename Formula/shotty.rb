@@ -1,8 +1,8 @@
 class Shotty < Formula
-  version  "0.0.1"
+  version  "0.0.2"
   homepage "https://github.com/itspriddle/shotty"
-  url      "https://github.com/itspriddle/shotty/archive/v0.0.1.tar.gz"
-  sha256   "c9f64b64d75d22d687ae31f8d6c0270d6dcae61bb32c4cab12e2efcca1bc4b75"
+  url      "https://github.com/itspriddle/shotty/archive/v0.0.2.tar.gz"
+  sha256   "dfadc4ea66d5b4532c1815abef4a76999dcf401071505a7d960ac2e97940db88"
 
   head "https://github.com/itspriddle/shotty"
 
