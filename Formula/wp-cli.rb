@@ -1,8 +1,8 @@
 class WpCli < Formula
   homepage "http://wp-cli.org/"
-  version  "1.2.1"
+  version  "1.3.0"
   url      "https://github.com/wp-cli/wp-cli/releases/download/v#{version}/wp-cli-#{version}.phar"
-  sha256   "9f9b1036165cf29143414a1c77f39802c4b9c3081a3cbaa6e7524d052ab449b7"
+  sha256   "3edb7cac7dbd07a80c0ab592c0211aa89b158df43e647d8e5ad9a883a518ad60"
   head     "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar"
 
   def install
