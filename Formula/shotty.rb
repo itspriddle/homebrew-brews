@@ -1,10 +1,10 @@
 class Shotty < Formula
-  version  "0.0.2"
+  version  "0.1.1"
   homepage "https://github.com/itspriddle/shotty"
-  url      "https://github.com/itspriddle/shotty/archive/v0.0.2.tar.gz"
-  sha256   "dfadc4ea66d5b4532c1815abef4a76999dcf401071505a7d960ac2e97940db88"
+  url      "https://github.com/itspriddle/shotty/archive/v#{version}.tar.gz"
+  sha256   "ac078d13f32f24880cd5d41bbc9c2e8bdfeda25731fc1bbb6825f533a6de7b7d"
 
-  head "https://github.com/itspriddle/shotty"
+  head "https://github.com/itspriddle/shotty.git"
 
   def install
     bin.install "bin/shotty"
