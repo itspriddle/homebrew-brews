@@ -1,7 +1,7 @@
 require "#{HOMEBREW_PREFIX}/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/vim"
 
 $PRISTINE_VIM_SPEC = {
-  ruby:     which("ruby"),
+  ruby:     which("ruby", ENV["HOMEBREW_PATH"]),
   homepage: Vim.homepage,
   desc:     Vim.desc,
   sha256:   Vim.stable.checksum.to_s,
@@ -43,6 +43,7 @@ class Vim < Formula
       --with-ruby-command=#{$PRISTINE_VIM_SPEC[:ruby]}
       --enable-gui=no
       --disable-nls
+      --enable-terminal
     )
 
     system "make"
