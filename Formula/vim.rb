@@ -1,15 +1,17 @@
-require "#{HOMEBREW_PREFIX}/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/vim"
+spec = File.read("#{HOMEBREW_PREFIX}/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/vim.rb").lines
+
+find_value = ->(word) do
+  spec.grep(/\A  #{word}/).first.split('"')[1]
+end
 
 $PRISTINE_VIM_SPEC = {
   ruby:     which("ruby", ENV["HOMEBREW_PATH"]),
-  homepage: Vim.homepage,
-  desc:     Vim.desc,
-  sha256:   Vim.stable.checksum.to_s,
-  url:      Vim.stable.url,
-  head:     Vim.head.url
+  homepage: find_value["homepage"],
+  desc:     find_value["desc"],
+  sha256:   find_value["sha256"],
+  url:      find_value["url"],
+  head:     find_value["head"],
 }
-
-Object.send :remove_const, :Vim
 
 class Vim < Formula
   desc     $PRISTINE_VIM_SPEC[:desc]
