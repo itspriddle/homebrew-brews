@@ -3,7 +3,7 @@ class Bashword < Formula
 
   homepage "https://github.com/itspriddle/bashword"
   url      "https://github.com/itspriddle/bashword/archive/v#{version}.tar.gz"
-  sha256   "111fdcfe1fe0450003ce84bc0014d5b849c8e6524abc59c98941cedf6c202452"
+  sha256   "19d8eb0678a30b30e7438fc535d7c7d8cc6b96822479194641be5fb45825cb68"
 
   head "https://github.com/itspriddle/bashword.git"
 
