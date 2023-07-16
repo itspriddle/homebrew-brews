@@ -1,9 +1,9 @@
 class Bashword < Formula
-  version "0.2.0"
+  version "0.3.1"
 
   homepage "https://github.com/itspriddle/bashword"
   url      "https://github.com/itspriddle/bashword/archive/v#{version}.tar.gz"
-  sha256   "19d8eb0678a30b30e7438fc535d7c7d8cc6b96822479194641be5fb45825cb68"
+  sha256   "c088e8e811add97ffcc593e697152cf4a2338ee2a9388c00cad011f5e58112e0"
 
   head "https://github.com/itspriddle/bashword.git"
 
