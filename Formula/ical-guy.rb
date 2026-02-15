@@ -11,6 +11,7 @@ class IcalGuy < Formula
 
   def install
     bin.install "ical-guy"
+    man1.install "man/man1/ical-guy.1"
   end
 
   test do
