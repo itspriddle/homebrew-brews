@@ -1,10 +1,10 @@
 class IcalGuy < Formula
-  version "0.5.0"
+  version "0.6.0"
 
   desc "CLI for querying macOS calendar events, outputting JSON"
   homepage "https://github.com/itspriddle/ical-guy"
   url "https://github.com/itspriddle/ical-guy/releases/download/v#{version}/ical-guy-v#{version}-macos-universal.tar.gz"
-  sha256 "62f5b91f5a1a261a979897b7f2cacb7b7b3d23425ed714686192ceb11de7a1a8"
+  sha256 "eb97f708807de265408f5e996cdaf22edeef24b6144b9aca6752e40fd8eb2e8f"
   license "MIT"
 
   depends_on :macos
