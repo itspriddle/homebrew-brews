@@ -24,12 +24,25 @@ sed_inplace() {
 # Update version
 sed_inplace "s/version \".*\"/version \"${VERSION#v}\"/" "$FORMULA_FILE"
 
-# Build the download URL by evaluating the url line from the formula with
-# the new version interpolated. This handles any URL pattern.
-URL=$(ruby -e "version='${VERSION#v}'; puts $(grep -m1 '^\s*url ' "$FORMULA_FILE" | sed 's/.*url //')")
+# Find all url and sha256 line numbers
+url_line_nums=()
+while IFS=: read -r num _; do
+  url_line_nums+=("$num")
+done < <(grep -n '^\s*url ' "$FORMULA_FILE")
 
-echo "Fetching $URL"
-SHASUM=$(curl -sL "$URL" | shasum -a 256 | awk '{ print $1 }')
-echo "  sha256: $SHASUM"
+sha_line_nums=()
+while IFS=: read -r num _; do
+  sha_line_nums+=("$num")
+done < <(grep -n '^\s*sha256 ' "$FORMULA_FILE")
 
-sed_inplace "s/sha256 \".*\"/sha256 \"$SHASUM\"/" "$FORMULA_FILE"
+# Update each url/sha256 pair
+for i in "${!url_line_nums[@]}"; do
+  url_expr=$(sed -n "${url_line_nums[$i]}p" "$FORMULA_FILE" | sed 's/.*url *//')
+  URL=$(ruby -e "version='${VERSION#v}'; puts ${url_expr}")
+
+  echo "Fetching $URL"
+  SHASUM=$(curl -sL "$URL" | shasum -a 256 | awk '{ print $1 }')
+  echo "  sha256: $SHASUM"
+
+  sed_inplace "${sha_line_nums[$i]}s/sha256 \".*\"/sha256 \"${SHASUM}\"/" "$FORMULA_FILE"
+done
