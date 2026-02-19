@@ -1,5 +1,5 @@
 class EmbyCli < Formula
-  version "0.2.0"
+  version "0.2.2"
 
   desc "Command-line interface for Emby media servers"
   homepage "https://github.com/itspriddle/emby-cli"
@@ -9,12 +9,12 @@ class EmbyCli < Formula
 
   on_arm do
     url "https://github.com/itspriddle/emby-cli/releases/download/v#{version}/emby-aarch64-apple-darwin.tar.gz"
-    sha256 "971982eda18e0966fa8bfe3338974e61ffd97bcf7b713dd0f336e936952d87a9"
+    sha256 "a022fd0b9622e410db02734b0d29bd2b036a6cf0c355112758a01d55e6b9da11"
   end
 
   on_intel do
     url "https://github.com/itspriddle/emby-cli/releases/download/v#{version}/emby-x86_64-apple-darwin.tar.gz"
-    sha256 "abd11fdc48fc5c6848a20750b4ceddec3f8b6946710d281273d9edeeb138f87e"
+    sha256 "35af7733713ffacae89aab4952c57ab67a0f7ec3cb86788004b31f2d996b3d53"
   end
 
   def install
