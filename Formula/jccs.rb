@@ -1,7 +1,7 @@
 class Jccs < Formula
   desc "Josh's Claude Code Statusline"
   homepage "https://github.com/itspriddle/jccs"
-  version "0.2.1"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
@@ -9,19 +9,19 @@ class Jccs < Formula
 
     on_arm do
       url "https://github.com/itspriddle/jccs/releases/download/v#{version}/jccs-v#{version}-aarch64-apple-darwin.tar.gz"
-      sha256 "97bfdd5505e0a97326200708295f50cf347b76029829d34b52bf5e86a9b64cc3"
+      sha256 "922568b48b9011927d42ec2ed99a6276c442c4a69222dc0b3eec63be7071a20d"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/itspriddle/jccs/releases/download/v#{version}/jccs-v#{version}-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "e63cbf7985add18afaa046b9a4c53cb60c50b7c6f92030acd72b228dd6f34064"
+      sha256 "f42c603e967c80f4105a32e3ca85d8ab175f70e102561e374004e87e9e84874a"
     end
 
     on_intel do
       url "https://github.com/itspriddle/jccs/releases/download/v#{version}/jccs-v#{version}-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "67f6d65d5c4fde647b361169c65b0d8979e87afe2b8ece39cd0d33605ee07c2f"
+      sha256 "581122d251fbf4bea0bdf4bfb9463d726c3a10e50cde6a500b0a8085852d0a49"
     end
   end
 
