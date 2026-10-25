@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 : "${VERSION:?Must specify version}"
 : "${FORMULA:?Must specify formula}"
@@ -21,9 +21,6 @@ sed_inplace() {
   fi
 }
 
-# Update version
-sed_inplace "s/version \".*\"/version \"${VERSION#v}\"/" "$FORMULA_FILE"
-
 # Find all url and sha256 line numbers
 url_line_nums=()
 while IFS=: read -r num _; do
@@ -35,14 +32,34 @@ while IFS=: read -r num _; do
   sha_line_nums+=("$num")
 done < <(grep -n '^\s*sha256 ' "$FORMULA_FILE")
 
-# Update each url/sha256 pair
+# url/sha256 are paired by position, so the counts must match
+if [[ ${#url_line_nums[@]} -eq 0 || ${#url_line_nums[@]} -ne ${#sha_line_nums[@]} ]]; then
+  echo "Error: $FORMULA_FILE has ${#url_line_nums[@]} url and ${#sha_line_nums[@]} sha256 lines"
+  exit 1
+fi
+
+# Fetch every url before touching the formula so a failure leaves it unchanged
+shasums=()
 for i in "${!url_line_nums[@]}"; do
   url_expr=$(sed -n "${url_line_nums[$i]}p" "$FORMULA_FILE" | sed 's/.*url *//')
   URL=$(ruby -e "version='${VERSION#v}'; puts ${url_expr}")
 
   echo "Fetching $URL"
-  SHASUM=$(curl -sL "$URL" | shasum -a 256 | awk '{ print $1 }')
-  echo "  sha256: $SHASUM"
+  SHASUM=$(curl -fsSL "$URL" | shasum -a 256 | awk '{ print $1 }')
 
-  sed_inplace "${sha_line_nums[$i]}s/sha256 \".*\"/sha256 \"${SHASUM}\"/" "$FORMULA_FILE"
+  if [[ ! "$SHASUM" =~ ^[0-9a-f]{64}$ ]]; then
+    echo "Error: invalid sha256 for $URL"
+    exit 1
+  fi
+
+  echo "  sha256: $SHASUM"
+  shasums+=("$SHASUM")
+done
+
+# Update version
+sed_inplace "s/version \".*\"/version \"${VERSION#v}\"/" "$FORMULA_FILE"
+
+# Update each sha256
+for i in "${!sha_line_nums[@]}"; do
+  sed_inplace "${sha_line_nums[$i]}s/sha256 \".*\"/sha256 \"${shasums[$i]}\"/" "$FORMULA_FILE"
 done
