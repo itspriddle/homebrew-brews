@@ -2,13 +2,13 @@ name: Lint GitHub Actions
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
     paths:
       - '.github/workflows/**'
       - '.github/actions/**'
       - '.github/dependabot.yml'
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - '.github/workflows/**'
       - '.github/actions/**'
