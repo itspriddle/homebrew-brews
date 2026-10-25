@@ -2,6 +2,8 @@
 #   -f version=v0.1.0 \
 #   -f formula=ical-guy \
 #   -R itspriddle/homebrew-brews
+name: Bump formula
+
 on:
   workflow_dispatch:
     inputs:
@@ -14,21 +16,45 @@ on:
         required: true
         type: string
 
+permissions: {}
+
+# Runs push to master, so queue them rather than racing or cancelling.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   update-formula:
+    name: Update formula
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # push the formula update commit to master
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
       - name: Update formula
+        env:
+          FORMULA: ${{ inputs.formula }}
+          VERSION: ${{ inputs.version }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
+          if [[ ! "$FORMULA" =~ ^[A-Za-z0-9@._+-]+$ ]]; then
+            echo "Invalid formula name: $FORMULA" >&2
+            exit 1
+          fi
+
+          if [[ ! "$VERSION" =~ ^v?[0-9A-Za-z.+-]+$ ]]; then
+            echo "Invalid version: $VERSION" >&2
+            exit 1
+          fi
+
           mkdir -p Formula
 
-          FORMULA='${{ github.event.inputs.formula }}' VERSION='${{ github.event.inputs.version }}' ./.github/script/update-formula
+          ./.github/script/update-formula
 
           git config --global user.name 'Josh Priddle'
           git config --global user.email 'jpriddle@me.com'
-          git add Formula/${{ github.event.inputs.formula }}.rb
-          git commit -m 'Updated ${{ github.event.inputs.formula }} to ${{ github.event.inputs.version }}'
-          git push origin master
+          git add "Formula/$FORMULA.rb"
+          git commit -m "Updated $FORMULA to $VERSION"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:master
