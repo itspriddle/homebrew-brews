@@ -1,8 +1,8 @@
 # Generated from Packaging/homebrew/peep.rb in itspriddle/peep by scripts/render-cask.
 # Don't edit it here: the next release replaces it.
 cask "peep" do
-  version "0.1.1"
-  sha256 "2a4d1a001efc669bd5a391f37a06f5677bd230343e87bb10d62dccf339ae6b6d"
+  version "0.2.0"
+  sha256 "afa860c8faea1100c7f4de2b28296d93783f8227996e118593c5109140cd4a96"
 
   url "https://github.com/itspriddle/peep/releases/download/v#{version}/Peep-#{version}.dmg"
   name "Peep"
@@ -27,6 +27,8 @@ cask "peep" do
   zap trash: [
     "~/Library/Application Support/Peep",
     "~/Library/Caches/now.peep.Peep",
+    "~/Library/Containers/now.peep.Peep.quicklook",
+    "~/Library/Group Containers/*.now.peep",
     "~/Library/HTTPStorages/now.peep.Peep",
     "~/Library/HTTPStorages/now.peep.Peep.binarycookies",
     "~/Library/Preferences/now.peep.Peep.plist",
